@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Measuring{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar opensans">
+            <div class="logo">Measuring (3/3)</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('cv') }}">Go</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </nav>
+        <main>
+            <h1 class = "opensans">Measure force: </h1>
+            <p class = "opensans">Calculate passive force by resting your finger on a scale. Do not apply any pressure. Measure the mass in grams.</p>
+            <p class = "opensans">Calculate active force by pressing your finger hard on the scale. Apply as much pressure as you can comfortably manage. Measure the mass in grams.</p>
+            <div style="position: relative; width: 640px; height: 480px;">
+                <!-- Video Feed -->
+                <img src="{{ url_for('longest_edge_stream') }}" width="640" height="480" style="position: absolute; top: 0; left: 0; margin-left: 150px; padding-top: 20px">
+                
+                <!-- Overlay PNG -->
+                <!-- <img src="{{ url_for('static', filename='images/finger.png') }}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 370px; height: 240px;  margin-left: 150px"> -->
+            </div>
+            <p class = 'opensans' style = "margin-bottom: 15px; margin-top: 15px">The scale edge should be in-line with the dot on your finger base.</p>
+
+            <a href="{{ url_for('parameterization') }}">
+                <button class="opensans">Next</button>
+            </a>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

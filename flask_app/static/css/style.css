@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -86,8 +87,27 @@ p {
     color: #666;
 }
 
-.surfer {
-    font-family: "Original Surfer", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+.opensans {
+        font-family: "Open Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-variation-settings:
+          "wdth" 100;
+}
+
+button{
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: lightblue
+}
+
+.intro {
+    position: relative;
+    padding-left: 20%;
+    padding-right: 20%
+}
+
+.intro p{
+    margin-bottom: 20px
+}

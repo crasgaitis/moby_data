@@ -3,23 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Moby Data{% endblock %}</title>
+    <title>{% block title %}Digi Brace{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 <body>
     <div class="container">
-        <nav class="navbar surfer">
-            <div class="logo">Moby Data</div>
+        <nav class="navbar opensans">
+            <div class="logo">Digi Brace</div>
             <ul class="nav-links">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('cv') }}">Go</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         </nav>
         <main>
+            <div class = "intro opensans">
+            <h1 style = "font-size: 30px" >Customization pipeline for low-cost, personalized orthosis fabrication </h1>
+            <p>More than 1.3 million U.S. adults have rheumatoid arthritis, a painful inflammation of the joints in the hands and fingers. The condition is characterized by hyperflexion which is when a joint has an abnormal range of motion.</p>
+            <p><strong> Patients design their own orthosis. </strong>
+                Rather than requiring a doctor to examine a patient’s arthritis symptoms, prescribe a treatment, and regular check in on the patient’s condition, which can be costly and difficult to access for many people, we attempted to create a cost-efficient, optimized pipeline for patients to customize their own orthoses, with multiple pathways to account for accessibility to technology and medical resources.
+                </p>
+            <img src = "static/images/finger_image.png" style = "width: 400px">
+            <p> This finger brace is designed to treat arthritis by straightening the affected finger(s), and allowing it to bend freely for daily activities. </p>
+            </div>
+
+            <a href="{{ url_for('cv') }}">
+                <button class="cv">Go</button>
+            </a>
+
             {% block content %}{% endblock %}
+            
         </main>
     </div>
 </body>
