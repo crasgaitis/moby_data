@@ -12,10 +12,10 @@ def home():
 def about():
     return render_template('about.html')
 
-# Data page route
-@app.route('/data')
-def contact():
-    return render_template('data.html')
+# Explore page route
+@app.route('/explore')
+def explore():
+    return render_template('explore.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

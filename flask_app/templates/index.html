@@ -14,7 +14,7 @@
             <ul class="nav-links">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('explore') }}">Explore</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         </nav>
@@ -22,5 +22,36 @@
             {% block content %}{% endblock %}
         </main>
     </div>
+
+    <div class="intro">
+        <img src="static/images/hydrophone.png" alt="hydrophone" class="left-image" />
+        <div class="right-text">
+            <h2 class = "surfer">How to use Moby Data</h2>
+            <p>
+                Moby Data is an exploratory data analysis tool that scrapes data from OOI hydrophone recordings.
+                With Moby Data, you can simply select a range of days and retrieve the desired audio recordings
+                along with auto-generated figures to visualize the recording data and related statistics. </p>
+                <br/>
+                <p>As part of this process, we extract the underlying latent space of the recording data based on
+                    the larger OOI database. This allows to infer what recordings are most similar to your recording,
+                    detect anomalies, or predict whether a whale call likely exists within a recording. </p>
+            </p>
+        </div>
+    </div>
+    <br/>
+
+    <div class="intro" style = "background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(236, 245, 255, 0.9))">
+        <div class="left-text">
+            <h2 class = "surfer">About the Project</h2>
+            <p>This project was authored by Catherine Rasgaitis as part of the OCEAN 411 (Seagoing Research & Discovery)
+                course. Catherine was also a part of the VISIONS 2024 field expedition where she lived and worked aboard
+                the R/V Atlantis to assist in data collection and other wet lab activities, such as constructing water
+                flow instruments, taking push core samples, and logging sea life.  </p>
+        </div>
+        <img src="static/images/whale.jpg" alt="hydrophone" class="right-image" />
+
+    </div>
+
+    <div class="wave-container"></div>
 </body>
 </html>
