@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Moby Data{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar surfer">
+            <div class="logo">Moby Data</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('explore') }}">Explore</a></li>
+                <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </nav>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <div class="intro" style = 'display: block; text-align: center; margin: 0 auto; max-width: 800px'>
+        <h1 class = 'surfer'>Got data?</h1> 
+           <p>
+            Upload your own audio recording (.wav or .mseed) and extract instant insights! </p>
+            <br/>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".wav, .mseed" required>
+                <input type="submit" value="Upload" style = "background-color:cadetblue; color: white">
+            </form>
+    </div>
+    <br/>
+    {% if spectrogram_image %}
+    <div class = "intro" style = 'display: block; text-align: center; margin: 0 auto'>
+        <h2 class = 'surfer'>Analysis</h2>
+        <img src="data:image/png;base64,{{ spectrogram_image }}" alt="Spectrogram" width = 430>
+        <img src="data:image/png;base64,{{ psd_plot }}" alt="PSD" width = 430>
+        <br/>
+        <img src="data:image/png;base64,{{ spectrogram_heatmap }}" alt="Spectrogram Hmap" width=430>
+        <img src="data:image/png;base64,{{ complex_spectrogram }}" alt="Magnitudes" width=430>
+    </div>
+    <br/>
+    <div class = "intro" style = 'display: block; text-align: center; margin: 0 auto'>
+        <h2 class = 'surfer'>Clustering</h2>
+        <p style = "padding-left: 30px; padding-right: 30px; margin-top: 15px">Based on {TODO: X num} hours of data, we deconstructed recordings into a 3-dimensional latent space. Overall, these components explain 
+            {TODO: X num}% of the dataset's variance. After applying a KNN (k=4), we the lower dimensional representations of recordings were clustered
+            into groups based on similarity. Here's how your data compares.
+        </p>
+        <img src="data:image/png;base64,{{ cluster_info }}" alt="Cluster" class = "analysis-info"> <br/>
+
+        <p style = "padding-left: 30px; padding-right: 30px; margin-top: 15px">
+            Here are the complex spectrograms for a single of instance of each cluster.
+        </p>
+
+        <img src="data:image/png;base64,{{ cluster1 }}" alt="Cluster1" width = 190>
+        <img src="data:image/png;base64,{{ cluster2 }}" alt="Cluster2" width = 190>
+        <img src="data:image/png;base64,{{ cluster3 }}" alt="Cluster3" width = 190>
+        <img src="data:image/png;base64,{{ cluster4 }}" alt="Cluster4" width = 190>
+
+    </div>
+
+    <div class = "intro" style = 'display: block; text-align: center; margin: 0 auto'>
+        <h2 class = 'surfer'>Whale ID</h2>
+    </div>
+
+
+    {% endif %}
+    
+    <br/>
+
+    <div class="wave-container"></div>
+</body>
+</html>

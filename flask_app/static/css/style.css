@@ -95,7 +95,7 @@ p {
   body {
     margin: 0;
     height: 200vh;
-    overflow: hidden;
+    /* overflow: hidden; */
     background: #87CEEB;
     position: relative
 }
@@ -178,7 +178,25 @@ p {
 }
 
 .left-text {
-    flex: 1; /* Allow text to take available space */
+    flex: 1; 
     margin-left: 10px
 }
 
+input[type="file"], input[type="submit"] {
+    background-color: lightblue;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]:hover, input[type="submit"]:hover {
+    background-color: #87ceeb;
+}
+
+.analysis-info img{
+    width: 300px;
+    height: auto
+}
