@@ -196,7 +196,6 @@ input[type="file"]:hover, input[type="submit"]:hover {
     background-color: #87ceeb;
 }
 
-.analysis-info img{
-    width: 300px;
-    height: auto
+h3 {
+    margin-top: 25px
 }

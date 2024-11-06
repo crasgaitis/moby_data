@@ -56,16 +56,46 @@
             Here are the complex spectrograms for a single of instance of each cluster.
         </p>
 
-        <img src="data:image/png;base64,{{ cluster1 }}" alt="Cluster1" width = 190>
-        <img src="data:image/png;base64,{{ cluster2 }}" alt="Cluster2" width = 190>
-        <img src="data:image/png;base64,{{ cluster3 }}" alt="Cluster3" width = 190>
-        <img src="data:image/png;base64,{{ cluster4 }}" alt="Cluster4" width = 190>
+        <img src="data:image/png;base64,{{ cluster1 }}" alt="Cluster1" width = 210>
+        <img src="data:image/png;base64,{{ cluster2 }}" alt="Cluster2" width = 210>
+        <img src="data:image/png;base64,{{ cluster3 }}" alt="Cluster3" width = 210>
+        <img src="data:image/png;base64,{{ cluster4 }}" alt="Cluster4" width = 210>
 
     </div>
     <br/>
     <div class = "intro" style = 'display: block; text-align: center; margin: 0 auto'>
         <h2 class = 'surfer'>Whale ID</h2>
+        <p style = "padding-left: 30px; padding-right: 30px; margin-top: 15px">Use heuristics to identify clicks and calls from gray whales, humpback whales, blue whales, and orcas.</p>
+    
+        <h3 class = 'surfer'>Clicks</h3>
+        <h4>Enter Detection Parameters</h2>
+        <form action="/" method="post">
+            <label for="click_duration">Click Duration (seconds):</label>
+            <input type="number" name="click_duration" step="0.01" value="{{ detection_params.click_duration }}" required><br><br>
+    
+            <label for="freq_min">Frequency Min (Hz):</label>
+            <input type="number" name="freq_min" value="{{ detection_params.freq_min }}" required><br><br>
+    
+            <label for="freq_max">Frequency Max (Hz):</label>
+            <input type="number" name="freq_max" value="{{ detection_params.freq_max }}" required><br><br>
+    
+            <label for="intensity_threshold">Intensity Threshold (0-1):</label>
+            <input type="number" name="intensity_threshold" step="0.1" value="{{ detection_params.intensity_threshold }}" required><br><br>
+    
+            <input type="submit" value="Set Parameters">
+        </form>
+        
+        {% if click_times %}
+        <h4 class = 'surfer'>Detected Whale Clicks (in seconds):</h2>
+        <ul>
+            {% for time in click_times %}
+                <li>{{ time }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    
     </div>
+
 
 
     {% endif %}
