@@ -1,5 +1,5 @@
 import wave
-import librosa
+# import librosa
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from oorcas import HydrophoneDay
@@ -24,7 +24,7 @@ overlap = 0.5
 n_clusters = 4  
 detection_params = {'click_duration': 0.01, 'freq_min': 2000, 'freq_max': 25000, 'intensity_threshold': 0.8}
 
-with open('../raw_data/pca_data.pkl', 'rb') as f:
+with open('static/pca_data.pkl', 'rb') as f:
     data = pickle.load(f)
 
 data_matrix = data['data_matrix']
@@ -233,30 +233,31 @@ def detect_whale_clicks():
     click_samples = int(click_duration * sample_rate)
     
     sos = signal.butter(4, [freq_min, freq_max], btype='band', fs=sample_rate, output='sos')
-    print('sos')
+    # print('sos')
     filtered_data = signal.sosfilt(sos, data)
-    print('filter')
+    # print('filter')
     
     envelope = np.abs(signal.hilbert(filtered_data))
-    print('envelope')
-    print(envelope)
-    print(np.max(envelope))
+    # print('envelope')
+    # print(envelope)
+    # print(np.max(envelope))
     clicks = envelope > intensity_threshold * np.max(envelope)
-    print(clicks)
-    click_starts = np.where(np.diff(clicks.astype(int)) == 1)[0]
-    click_ends = np.where(np.diff(clicks.astype(int)) == -1)[0]
+    # print(clicks)
+    # click_starts = np.where(np.diff(clicks.astype(int)) == 1)[0]
+    # click_ends = np.where(np.diff(clicks.astype(int)) == -1)[0]
     
-    if len(click_starts) > len(click_ends):
-        click_starts = click_starts[:-1]
-    elif len(click_ends) > len(click_starts):
-        click_ends = click_ends[1:]
+    # if len(click_starts) > len(click_ends):
+    #     click_starts = click_starts[:-1]
+    # elif len(click_ends) > len(click_starts):
+    #     click_ends = click_ends[1:]
     
-    detected_clicks = []
-    for start, end in zip(click_starts, click_ends):
-        if (end - start) >= click_samples:
-            detected_clicks.append(data[start:end])
+    # detected_clicks = []
+    # for start, end in zip(click_starts, click_ends):
+    #     if (end - start) >= click_samples:
+    #         detected_clicks.append(data[start:end])
     
-    return detected_clicks
+    
+    return np.sum(clicks)
 
 
 # Home page route
@@ -328,8 +329,8 @@ def upload_file(upload_folder="flask_app/app.py/upload_folder"):
         if file_path:
             print('yo')
             
-            click_times = detect_whale_clicks()
-            print(click_times)
+            click_times_ = detect_whale_clicks()
+            click_times = click_times_ > 1
             
             return render_template('upload.html', spectrogram_image=spectrogram_image,
                                         spectrogram_heatmap = spectrogram_heatmap,
@@ -340,4 +341,4 @@ def upload_file(upload_folder="flask_app/app.py/upload_folder"):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port = 5001, debug=True)

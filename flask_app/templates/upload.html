@@ -46,8 +46,8 @@
     <br/>
     <div class = "intro" style = 'display: block; text-align: center; margin: 0 auto'>
         <h2 class = 'surfer'>Clustering</h2>
-        <p style = "padding-left: 30px; padding-right: 30px; margin-top: 15px">Based on {TODO: X num} hours of data, we deconstructed recordings into a 3-dimensional latent space. Overall, these components explain 
-            {TODO: X num}% of the dataset's variance. After applying a KNN (k=4), we the lower dimensional representations of recordings were clustered
+        <p style = "padding-left: 30px; padding-right: 30px; margin-top: 15px">Based on several hours of data, we deconstructed recordings into a 3-dimensional latent space. Overall, these components explain 
+            over 70% of the dataset's variance. After applying a KNN (k=4), we the lower dimensional representations of recordings were clustered
             into groups based on similarity. Here's how your data compares.
         </p>
         <img src="data:image/png;base64,{{ cluster_info }}" alt="Cluster" class = "analysis-info"> <br/>
@@ -84,15 +84,22 @@
     
             <input type="submit" value="Set Parameters">
         </form>
-        
-        {% if click_times %}
-        <h4 class = 'surfer'>Detected Whale Clicks (in seconds):</h2>
-        <ul>
-            {% for time in click_times %}
-                <li>{{ time }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+
+        <h3 class="surfer">Fixed Parameters</h3>
+        <div class="whale_detect_fixed">
+            <div id="gray_whale" class="whale">Gray Whale <br/> ❌</div>
+            <div id="humpback" class="whale">Humpback Whale <br/> ❌ </div>
+            <div id="blue" class="whale">Blue Whale <br/> ❌ </div>
+            <div id="orcas" class="whale">Orcas <br/> ❌</div>
+            <div id="custom" class="whale">Custom
+                <br/>
+                {% if click_times %}
+                ✅
+                {% else %}
+                    ❌
+                {% endif %}
+            </div>
+        </div>
     
     </div>
 
